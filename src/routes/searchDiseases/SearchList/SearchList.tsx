@@ -4,14 +4,17 @@ import cx from 'classnames'
 import styles from './searchList.module.scss'
 import '../SearchDiseases.scss'
 import { Dispatch, SetStateAction, useCallback, useEffect, useState, MouseEvent, FocusEvent } from 'react'
+import { useAppSelector } from 'hooks'
+import { getDisease } from 'states/disease'
 
 interface Props {
-  searchList: IItem[] | undefined
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const SearchList = ({ searchList, isOpen, setIsOpen }: Props) => {
+const SearchList = ({ isOpen, setIsOpen }: Props) => {
+  const searchList = useAppSelector(getDisease)
+
   const [index, setIndex] = useState<number>(-1)
 
   const handleKeyPress = (event: { key: string }) => {

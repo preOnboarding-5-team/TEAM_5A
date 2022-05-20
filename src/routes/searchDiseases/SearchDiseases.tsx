@@ -1,8 +1,12 @@
-import { ChangeEvent, FormEvent, useMemo, useState } from 'react'
-import { useQuery } from 'react-query'
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
+import { useQuery, UseQueryResult } from 'react-query'
 import { debounce } from 'lodash'
 
+import { useAppDispatch, useAppSelector } from 'hooks'
+
 import { getSearchDiseasesApi } from 'services/search'
+
+import disease, { setDisease } from 'states/disease'
 
 import './SearchDiseases.scss'
 import SearchList from './SearchList/SearchList'
@@ -11,6 +15,8 @@ const SearchDiseases = () => {
   const [inputValue, setInputValue] = useState<string>('')
   const [isOpen, setIsOpen] = useState(false)
 
+  const dispatch = useAppDispatch()
+
   const { data } = useQuery(
     ['getDiseaseNameApi', inputValue],
     () =>
@@ -18,7 +24,7 @@ const SearchDiseases = () => {
         // eslint-disable-next-line no-console
         console.count('API Call')
         if (res.data.response.body.totalCount > 0) setIsOpen(true)
-        return res.data.response.body
+        return res.data.response.body.items.item
       }),
     {
       enabled: !!inputValue,
@@ -36,6 +42,11 @@ const SearchDiseases = () => {
 
   const debouncedChangeHandler = useMemo(() => debounce(handleChange, 1000), [])
 
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(setDisease(data))
+  }, [data])
+
   return (
     <div className='bg'>
       <div className='bg-center'>
@@ -52,7 +63,7 @@ const SearchDiseases = () => {
                 검색
               </button>
             </form>
-            {isOpen && <SearchList searchList={data?.items.item} isOpen={isOpen} setIsOpen={setIsOpen} />}
+            {isOpen && <SearchList isOpen={isOpen} setIsOpen={setIsOpen} />}
           </div>
         </div>
       </div>
