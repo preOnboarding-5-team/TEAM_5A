@@ -1,18 +1,15 @@
-import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
-import { useQuery } from 'react-query'
-import { debounce } from 'lodash'
-
+import { SearchIcon } from 'assets/svgs'
 import { useAppDispatch } from 'hooks'
-
+import { debounce } from 'lodash'
+import React, { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
+import { useQuery } from 'react-query'
 import { getSearchDiseasesApi } from 'services/search'
-
 import { setDisease } from 'states/disease'
 
-import styles from './SearchDiseases.module.scss'
-
+import styles from './MobileSearchDiseases.module.scss'
 import SearchList from './SearchList/SearchList'
 
-const SearchDiseases = () => {
+const MobileSearchDisease = () => {
   const [inputValue, setInputValue] = useState<string>('')
   const [isOpen, setIsOpen] = useState(false)
 
@@ -54,18 +51,15 @@ const SearchDiseases = () => {
       <div className={styles.bgCenter}>
         <div className={styles.container}>
           <div className={styles.searchContainer}>
-            <h1>
-              <div>국내 모든 임상시험 검색하고</div> 온라인으로 참여하기
-            </h1>
+            <div className={styles.title}>
+              국내 모든 임상시험 검색하고 <br /> 온라인으로 참여하기
+            </div>
             <form className={styles.searchWrapper} onSubmit={handleSubmit}>
               <div className={styles.inputWrapper}>
                 <input type='text' placeholder='질환명을 입력해 주세요.' onChange={debouncedChangeHandler} />
+                <SearchIcon className={styles.searchIcon} />
               </div>
-              <button type='submit' className={styles.searchTextbox}>
-                검색
-              </button>
             </form>
-            {isOpen && <SearchList isOpen={isOpen} setIsOpen={setIsOpen} />}
           </div>
         </div>
       </div>
@@ -73,4 +67,4 @@ const SearchDiseases = () => {
   )
 }
 
-export default SearchDiseases
+export default MobileSearchDisease

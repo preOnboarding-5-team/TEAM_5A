@@ -1,9 +1,9 @@
 import { IItem } from 'types/search'
 import cx from 'classnames'
 
-import styles from './searchList.module.scss'
-import '../SearchDiseases.scss'
-import { Dispatch, SetStateAction, useCallback, useEffect, useState, MouseEvent, FocusEvent } from 'react'
+import styles from './SearchList.module.scss'
+
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useAppSelector } from 'hooks'
 import { getDisease } from 'states/disease'
 
