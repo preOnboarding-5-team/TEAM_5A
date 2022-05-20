@@ -43,8 +43,9 @@ const SearchDiseases = () => {
   const debouncedChangeHandler = useMemo(() => debounce(handleChange, 1000), [])
 
   useEffect(() => {
-    // @ts-ignore
-    dispatch(setDisease(data))
+    if (data) {
+      dispatch(setDisease(data))
+    }
   }, [data])
 
   return (
