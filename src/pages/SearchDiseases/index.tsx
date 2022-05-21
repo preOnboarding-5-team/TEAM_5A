@@ -1,33 +1,29 @@
-import { useMemo } from 'react';
-import { debounce } from 'lodash';
+import { ChangeEvent, FormEvent } from 'react';
 
 // import { useSearchKeyword } from 'hooks/useSearchKeyword';
 import { useSearchAll } from 'hooks/useSearchAll';
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { getSearchValue, setSearchValue } from 'states/value/searchValue';
-import SearchList from 'components/SearchList/index';
+import { getSearchValue, setSearchValue } from 'states/searchValue';
+import SearchList from 'components/SearchList';
 
-import styles from './searchDiseases.module.scss';
+import styles from './SearchDiseases.module.scss';
 
 const SearchDiseases = () => {
-  // TODO: managed state
-  // const [inputValue, setInputValue] = useState('');
   const { isLoading } = useSearchAll();
+
+  // 키워드 별로 api를 호출하는 기능입니다.
   // const { isLoading } = useSearchKeyword();
 
   const searchValue = useAppSelector(getSearchValue);
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchValue(e.target.value));
   };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedChangeHandler = useMemo(() => debounce(handleChange, 1000), []);
 
   return (
     <div className={styles.searchContainer}>
@@ -44,7 +40,8 @@ const SearchDiseases = () => {
             className={styles.searchInput}
             type="text"
             placeholder="질환명을 입력해 주세요."
-            onChange={debouncedChangeHandler}
+            onChange={handleChange}
+            value={searchValue}
           />
           <button className={styles.searchButton} type="submit">
             검색
