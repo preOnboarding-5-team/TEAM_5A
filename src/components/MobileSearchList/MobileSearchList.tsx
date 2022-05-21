@@ -90,6 +90,8 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
             <SearchIcon className={styles.searchIcon} />
           </div>
         </form>
+        <p className={styles.title}>{title}</p>
+
         {isLoading ? (
           <p className={styles.noResult}>데이터 로딩 중...</p>
         ) : (
@@ -119,12 +121,7 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
     );
   })();
 
-  return (
-    <div className={styles.list}>
-      <p className={styles.title}>{title}</p>
-      {loadSearchList}
-    </div>
-  );
+  return <div className={styles.list}>{loadSearchList}</div>;
 };
 
 export default MobileSearchList;
