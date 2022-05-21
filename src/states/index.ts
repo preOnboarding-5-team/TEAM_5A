@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import searchListRenderReducer from './condition/searchListRender';
 import searchRecommendReducer from './condition/searchRecommend';
 import searchResultReducer from './condition/searchResult';
-import searchValueReducer from './value/searchValue';
+import searchValueReducer from './searchValue';
 
 import allItems from './allItems';
 import apiCount from './apiCount';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import cx from 'classnames';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { setSearchValue } from 'states/value/searchValue';
+import { setSearchValue } from 'states/searchValue';
 import { SearchIcon } from 'assets/svgs';
 
 import styles from './SearchList.module.scss';
@@ -16,7 +16,6 @@ const SearchList = ({ isLoading }: Props) => {
   const dispatch = useAppDispatch();
 
   const searchResult = useAppSelector((state) => state.searchResultList);
-
   useEffect(() => {
     setIndex(-1);
   }, [searchResult]);
@@ -43,7 +42,6 @@ const SearchList = ({ isLoading }: Props) => {
     setIndex(Number(e.currentTarget.dataset.idx));
   };
 
-  // TODO 처음 키 두 번 입력됨
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress);
 
@@ -67,7 +65,6 @@ const SearchList = ({ isLoading }: Props) => {
             onMouseEnter={handleMouseEnter}
           >
             <SearchIcon className={styles.icon} />
-            {/* <span>{item.sickNm}</span> */}
             <span>
               {item.sickNm.split(',').map((letter, i) => {
                 const key = `${item.sickCd}-${i}`;
