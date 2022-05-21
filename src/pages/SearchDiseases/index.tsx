@@ -3,10 +3,11 @@ import { ChangeEvent, FormEvent } from 'react';
 // import { useSearchKeyword } from 'hooks/useSearchKeyword';
 import { useSearchAll } from 'hooks/useSearchAll';
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { getSearchValue, setSearchValue } from 'states/value/searchValue';
+import { getSearchValue, setSearchValue } from 'states/searchValue';
 import SearchList from 'components/SearchList/index';
 
 import styles from './SearchDiseases.module.scss';
+import { SearchIcon } from 'assets/svgs';
 
 const SearchDiseases = () => {
   const { isLoading } = useSearchAll();
@@ -36,6 +37,7 @@ const SearchDiseases = () => {
       </header>
       <main>
         <form className={styles.searchWrapper} onSubmit={handleSubmit}>
+          {/* <SearchIcon className={styles.icon} /> */}
           <input
             className={styles.searchInput}
             type="text"

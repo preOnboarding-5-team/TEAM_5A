@@ -63,7 +63,11 @@
             letter-spacing: -0.018em;
             line-height: 1.6;
             border-radius: 42px;
-            box-shadow: 0px 2px 2px rgb(30 32 37 / 10%);
+            box-shadow: 0px 2px 2px rgb(30, 32, 37 / 10%);
+
+            .searchIcon {
+              width: 50px;
+            }
 
             .listBtn {
               width: 100%;

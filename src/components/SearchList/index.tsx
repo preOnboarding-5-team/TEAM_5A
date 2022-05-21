@@ -56,7 +56,7 @@ const SearchList = ({ isLoading }: Props) => {
     if (isLoading) return <p className={styles.title}>데이터 로딩 중...</p>;
     if (searchResult.items.length === 0) return <p className={styles.title}>검색 결과가 없습니다.</p>;
     return (
-      <ul>
+      <ul className={styles.listWrapper}>
         {searchResult.items.map((item, idx) => (
           <li
             className={cx(styles.listContent, { [styles.isFocus]: idx === index })}

@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { BackIcon, CloseIcon, SearchIcon } from 'assets/svgs';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { getSearchValue, setSearchValue } from 'states/value/searchValue';
+import { getSearchValue, setSearchValue } from 'states/searchValue';
 
 import styles from './MobileSearchList.module.scss';
 
@@ -78,7 +78,9 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
       <div className={styles.container}>
         <form className={styles.searchWrapper}>
           <div className={styles.inputWrapper}>
-            <BackIcon className={styles.backIcon} onClick={handleShowList} />
+            <button type="button" onClick={handleShowList}>
+              <BackIcon className={styles.backIcon} />
+            </button>
             <input
               className={styles.input}
               type="text"
@@ -86,8 +88,12 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
               onChange={handleChange}
               value={searchValue}
             />
-            <CloseIcon className={styles.closeIcon} onClick={handleErase} />
-            <SearchIcon className={styles.searchIcon} />
+            <button type="button" onClick={handleShowList}>
+              <CloseIcon className={styles.closeIcon} />
+            </button>
+            <button type="button">
+              <SearchIcon className={styles.searchIcon} />
+            </button>
           </div>
         </form>
         {isLoading ? (
