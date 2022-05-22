@@ -14,9 +14,8 @@ const App = () => {
   return (
     <div className={styles.appWrapper}>
       <div className={styles.app}>
-        <SearchDiseases />
-        {/* {isDesktopOrLaptop && <SearchDiseases />}
-        {isTabletOrMobile && <MobileSearchDisease />} */}
+        {isDesktopOrLaptop && <SearchDiseases />}
+        {isTabletOrMobile && <MobileSearchDisease />}
       </div>
     </div>
   );
