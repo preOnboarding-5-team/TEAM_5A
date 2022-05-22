@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { BackIcon, CloseIcon, SearchIcon } from 'assets/svgs';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { getSearchValue, setSearchValue } from 'states/searchValue';
+import { getSearchValue, setSearchValue } from 'states/value/searchValue';
 
 import styles from './MobileSearchList.module.scss';
 
@@ -18,6 +18,8 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
 
   const searchValue = useAppSelector(getSearchValue);
   const dispatch = useAppDispatch();
+
+  // 필요없지 않나...?
 
   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
@@ -81,8 +83,8 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
             <BackIcon className={styles.backIcon} onClick={handleShowList} />
             <input
               className={styles.input}
-              type="text"
-              placeholder="질환명을 입력해 주세요."
+              type='text'
+              placeholder='질환명을 입력해 주세요.'
               onChange={handleChange}
               value={searchValue}
             />
@@ -95,26 +97,19 @@ const MobileSearchList = ({ isLoading, setIsOpen }: Props) => {
         ) : (
           searchResult.items.length === 0 && <p className={styles.noResult}>검색 결과가 없습니다.</p>
         )}
-        {searchValue && (
-          <ul>
-            {searchResult.items.map((item, idx) => (
-              <li
-                className={cx(styles.listContent, { [styles.isFocus]: idx === index })}
-                key={item.sickCd}
-                data-idx={idx}
-                onMouseEnter={handleMouseEnter}
-              >
-                <SearchIcon className={styles.icon} />
-                <span>
-                  {item.sickNm.split(',').map((letter, i) => {
-                    const key = `${item.sickCd}-${i}`;
-                    return letter[0] === '|' ? <mark key={key}>{letter.split('|')[1]}</mark> : letter;
-                  })}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul>
+          {searchResult.items.map((item, idx) => (
+            <li
+              className={cx(styles.listContent, { [styles.isFocus]: idx === index })}
+              key={item.sickCd}
+              data-idx={idx}
+              onMouseEnter={handleMouseEnter}
+            >
+              <SearchIcon className={styles.icon} />
+              <span>{item.sickNm}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   })();

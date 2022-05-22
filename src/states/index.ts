@@ -1,12 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import searchValue from './searchValue';
+import searchListRenderReducer from './condition/searchListRender';
+import searchRecommendReducer from './condition/searchRecommend';
+import searchResultReducer from './condition/searchResult';
+import searchValueReducer from './value/searchValue';
+
+import allItems from './allItems';
 import apiCount from './apiCount';
 import searchResultList from './searchResultList';
 
 export const store = configureStore({
   reducer: {
-    searchValue,
+    searchListRender: searchListRenderReducer,
+    searchRecommend: searchRecommendReducer,
+    searchResult: searchResultReducer,
+    searchValue: searchValueReducer,
+    allItems,
     apiCount,
     searchResultList,
   },
