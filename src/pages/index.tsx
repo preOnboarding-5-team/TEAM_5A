@@ -10,7 +10,7 @@ const App = () => {
     query: '(min-width: 1040px)',
   });
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1040px)' });
-
+  // aaa
   return (
     <div className={styles.appWrapper}>
       <div className={styles.app}>
