@@ -32,8 +32,11 @@ export const getAllDiseasesApi = async () => {
   const { data } = await axios.get<IDiseaseAPIRes>(`${SEARCH_DISEASES_BASE_URL}`, {
     params: {
       _type: 'json',
-      numOfRows: 2000,
       ServiceKey: process.env.REACT_APP_GET_DISS_API_KEY,
+      numOfRows: 2000,
+      sickType: 1,
+      medTp: 2,
+      diseaseType: 'SICK_NM',
     },
   });
 
