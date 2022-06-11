@@ -33,7 +33,7 @@ export const getAllDiseasesApi = async () => {
     params: {
       _type: 'json',
       numOfRows: 2000,
-      ServiceKey: process.env.REACT_APP_DISEASES_ID,
+      ServiceKey: process.env.REACT_APP_GET_DISS_API_KEY,
     },
   });
 
