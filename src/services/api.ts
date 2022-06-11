@@ -5,19 +5,20 @@ const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const SEARCH_DISEASES_BASE_URL = `${PROXY}/B551182/diseaseInfoService/getDissNameCodeList`;
 
-// interface Params {
-//   searchText: string;
-// }
+interface Params {
+  searchText: string;
+}
 
-export const getSearchDiseasesAPI = async () => {
+export const getSearchDiseasesAPI = async (params: Params) => {
   const { data } = await axios.get<IDiseaseAPIRes>(`${SEARCH_DISEASES_BASE_URL}`, {
     params: {
       ServiceKey: process.env.REACT_APP_GET_DISS_API_KEY,
-      diseaseType: 'SICK_NM',
+      ...params,
+      _type: 'json',
       numOfRows: 2000,
       sickType: 1,
       medTp: 2,
-      _type: 'json',
+      diseaseType: 'SICK_NM',
     },
   });
 
