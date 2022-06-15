@@ -1,10 +1,10 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
 
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+// const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 // const SEARCH_DISEASES_BASE_URL = `${PROXY}/B551182/diseaseInfoService/getDissNameCodeList`;
-const SEARCH_DISEASES_BASE_URL = 'ec2-18-207-186-148.compute-1.amazonaws.com:8080';
+const SEARCH_DISEASES_BASE_URL = 'http://ec2-18-207-186-148.compute-1.amazonaws.com/';
 
 interface Params {
   searchText: string;
@@ -23,9 +23,10 @@ export const getSearchDiseasesAPI = async (params: Params) => {
   //   },
   // });
 
-  const { data } = await axios.get<IDiseaseAPIRes>(SEARCH_DISEASES_BASE_URL);
+  const { data } = await axios.get<IBody>(SEARCH_DISEASES_BASE_URL);
 
-  const item = data.response.body?.items?.item;
+  // const item = data.response.body?.items?.item;
+  const item = data.items?.item;
   if (item === undefined) return;
   if (item instanceof Array) return item;
   return [item];
@@ -43,9 +44,14 @@ export const getAllDiseasesApi = async () => {
   //   },
   // });
 
-  const { data } = await axios.get<IDiseaseAPIRes>(SEARCH_DISEASES_BASE_URL);
+  const res = await axios.get<IBody>(SEARCH_DISEASES_BASE_URL);
 
-  const item = data.response.body?.items?.item;
+  console.log(res);
+
+  const { data } = res;
+
+  // const item = data.response.body?.items?.item;
+  const item = data.items?.item;
   if (item === undefined) return;
   if (item instanceof Array) return item;
   return [item];
