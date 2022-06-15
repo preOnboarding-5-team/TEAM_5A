@@ -4,7 +4,7 @@ import axios from 'axios';
 // const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 // const SEARCH_DISEASES_BASE_URL = `${PROXY}/B551182/diseaseInfoService/getDissNameCodeList`;
-const SEARCH_DISEASES_BASE_URL = 'http://ec2-18-207-186-148.compute-1.amazonaws.com/';
+const SEARCH_DISEASES_BASE_URL = 'https://ec2-18-207-186-148.compute-1.amazonaws.com/';
 
 interface Params {
   searchText: string;
