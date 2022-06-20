@@ -4,7 +4,7 @@ import axios from 'axios';
 // const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 // const SEARCH_DISEASES_BASE_URL = `${PROXY}/B551182/diseaseInfoService/getDissNameCodeList`;
-const SEARCH_DISEASES_BASE_URL = 'http://ec2-18-207-186-148.compute-1.amazonaws.com/';
+const SEARCH_DISEASES_BASE_URL = 'https://human-server.click/';
 
 interface Params {
   searchText: string;
@@ -33,16 +33,16 @@ export const getSearchDiseasesAPI = async (params: Params) => {
 };
 
 export const getAllDiseasesApi = async () => {
-  // const { data } = await axios.get<IDiseaseAPIRes>(`${SEARCH_DISEASES_BASE_URL}`, {
-  //   params: {
-  //     _type: 'json',
-  //     ServiceKey: process.env.REACT_APP_GET_DISS_API_KEY,
-  //     numOfRows: 2000,
-  //     sickType: 1,
-  //     medTp: 2,
-  //     diseaseType: 'SICK_NM',
-  //   },
-  // });
+  const { data } = await axios.get<IDiseaseAPIRes>(`${SEARCH_DISEASES_BASE_URL}`, {
+    params: {
+      _type: 'json',
+//       ServiceKey: process.env.REACT_APP_GET_DISS_API_KEY,
+      numOfRows: 2000,
+      sickType: 1,
+      medTp: 2,
+      diseaseType: 'SICK_NM',
+    },
+  });
 
   const res = await axios.get<IBody>(SEARCH_DISEASES_BASE_URL);
 
